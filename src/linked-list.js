@@ -36,7 +36,16 @@ class LinkedList {
     }
 
     insertAt(index, data) {
-        this._getNode(index).data = data;
+        var newNode = new Node(data);
+        var currNode = this._getNode(index);
+        var nextNode = this._getNode(index + 1);
+
+        currNode.next = newNode;
+        newNode.prev = currNode;
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+
+        this.length++;
         return this;
     }
 
